@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaviPlata</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            color: #333;
+            background: linear-gradient(to bottom right, #e57373, #f06292); /* Fondo degradado vibrante */
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #d32f2f;
+            padding: 15px 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid #c2185b; /* Línea decorativa debajo de la barra */
+        }
+
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            background-color: #c2185b; /* Color rosa oscuro para el fondo */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #9c27b0; /* Rosa más oscuro para el hover */
+            transform: scale(1.05);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            background-color: #c2185b; /* Rosa oscuro para el botón */
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .dropbtn:hover {
+            background-color: #9c27b0; /* Rosa más oscuro para el hover */
+            transform: scale(1.05);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #d32f2f;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            border-radius: 8px;
+        }
+
+        .dropdown-content a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #9c27b0; /* Rosa más brillante para el hover */
+            transform: scale(1.05);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        header {
+            background-color: #d32f2f;
+            color: #ffffff;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border-bottom: 5px solid #c2185b;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            color: #ffffff;
+            position: relative;
+            font-family: 'Georgia', serif;
+        }
+
+        h1:after {
+            content: "";
+            width: 120px;
+            height: 5px;
+            background-color: #c2185b;
+            display: block;
+            margin: 10px auto 0;
+        }
+
+        main {
+            padding: 40px 20px;
+            text-align: center;
+            flex: 1;
+            background: #ffffff; /* Fondo blanco para el contenido principal */
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            max-width: 1200px; /* Limita el ancho máximo */
+        }
+
+        main p {
+            text-align: justify;
+            margin: 20px auto;
+            max-width: 800px;
+            color: #555555;
+            font-size: 1.2em; /* Tamaño de fuente más grande */
+            padding: 15px; /* Padding para el contenido */
+            background: #fafafa; /* Fondo claro para el texto */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px auto;
+        }
+
+        .image-grid-item {
+            text-align: center;
+            max-width: 300px;
+            background-color: #ffffff; /* Fondo blanco para las tarjetas */
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-grid-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .image-grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .image-grid-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .image-grid-item p {
+            margin-top: 15px;
+            color: #555555;
+            font-size: 1em;
+            padding: 10px;
+            background: #f0f0f0; /* Fondo claro para el texto */
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #d32f2f;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+            margin-top: auto; /* Asegura que el footer se mantenga al final de la página */
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        footer .btn {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #c2185b;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 1em;
+            margin: 10px;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        footer .btn:hover {
+            background-color: #9c27b0;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .image-grid-item {
+                max-width: 100%;
+            }
+
+            main {
+                margin: 20px 10px;
+                padding: 20px;
+            }
+        }
+
+        .daviplata-image, .inicio-image, .pagina-image, .servicios-image {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%; /* Ajustar al 100% del contenedor */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+    </style>
+</head>
+<body>
+    
+        <div class="navbar">
+            <a href="HOLA.HTML">Inicio</a>
+            <a href="contacto.html">Contáctanos</a>
+            <div class="dropdown">
+                <a href="#">Otras Apps</a>
+                <div class="dropdown-content">
+                    <a href="daviplata.html">Daviplata</a>
+                    <a href="nequi.html">Nequi</a>
+                    <!-- Añade más enlaces aquí -->
+                </div>
+            </div>
+        </div>
+    
+        <img class="daviplata-image" src="imagenes/Daviplata.jpg" alt="Imagen de Bancolombia">
+    
+    <main>
+        <p>𝘿𝙖𝙫𝙞𝙋𝙡𝙖𝙩𝙖 𝙚𝙨 𝙪𝙣𝙖 𝙥𝙡𝙖𝙩𝙖𝙛𝙤𝙧𝙢𝙖 𝙙𝙚 𝙨𝙚𝙧𝙫𝙞𝙘𝙞𝙤𝙨 𝙛𝙞𝙣𝙖𝙣𝙘𝙞𝙚𝙧𝙤𝙨 𝙙𝙞𝙜𝙞𝙩𝙖𝙡𝙚𝙨 𝙚𝙣 𝘾𝙤𝙡𝙤𝙢𝙗𝙞𝙖 𝙦𝙪𝙚 𝙥𝙚𝙧𝙢𝙞𝙩𝙚 𝙖 𝙡𝙤𝙨 𝙪𝙨𝙪𝙖𝙧𝙞𝙤𝙨 𝙧𝙚𝙖𝙡𝙞𝙯𝙖𝙧 𝙩𝙧𝙖𝙣𝙨𝙖𝙘𝙘𝙞𝙤𝙣𝙚𝙨 𝙘𝙤𝙢𝙤 𝙚𝙣𝙫𝙞𝙖𝙧 𝙮 𝙧𝙚𝙘𝙞𝙗𝙞𝙧 𝙙𝙞𝙣𝙚𝙧𝙤, 𝙥𝙖𝙜𝙖𝙧 𝙨𝙚𝙧𝙫𝙞𝙘𝙞𝙤𝙨, 𝙝𝙖𝙘𝙚𝙧 𝙘𝙤𝙢𝙥𝙧𝙖𝙨 𝙚𝙣 𝙡𝙞́𝙣𝙚𝙖 𝙮 𝙧𝙚𝙘𝙖𝙧𝙜𝙖𝙧 𝙨𝙖𝙡𝙙𝙤, 𝙩𝙤𝙙𝙤 𝙙𝙚𝙨𝙙𝙚 𝙨𝙪𝙨 𝙩𝙚𝙡𝙚́𝙛𝙤𝙣𝙤𝙨 𝙢𝙤́𝙫𝙞𝙡𝙚𝙨.
+            <br><br>
+            <center><em>DaviPlata es una línea de negocio de Davivienda S.A.</em></center>
+        </p>
+
+        <div class="image-grid">
+            <div class="image-grid-item">
+                <img src="imagenes/1.jpg.jpeg" alt="Daviplata">
+                <p>Inicio de sesión de la plataforma DaviPlata. Ingresa tu número de documento y clave para acceder a la aplicación.</p>
+            </div>
+            <div class="image-grid-item">
+                <img src="imagenes/2.jpg.jpeg" alt="Página principal">
+                <p>Página principal donde puedes ver tu dinero y funciones disponibles. Para enviar dinero, selecciona la opción correspondiente.</p>
+            </div>
+            <div class="image-grid-item">
+                <img src="imagenes/3.jpg.jpeg" alt="Registrar datos">
+                <p>Registra los datos de la persona a la que enviarás dinero: nombre, banco, tipo de cuenta, teléfono y monto.</p>
+            </div>
+            <div class="image-grid-item">
+                <img src="imagenes/4.jpg.jpeg" alt="Confirmar transacción">
+                <p>Confirma la transacción revisando todos los datos antes de finalizar el envío de dinero.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ayuda manejo de aplicaciones</p>
+    </footer>
+    
+</body>
+</html>
